@@ -27,6 +27,28 @@ CREATE TABLE IF NOT EXISTS agendamentos (
     data TEXT NOT NULL,
     horario TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS produtos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL UNIQUE,
+    unidade TEXT NOT NULL DEFAULT 'un',
+    quantidade REAL NOT NULL DEFAULT 0,
+    quantidade_minima REAL NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS movimentos_estoque (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    produto_id INTEGER NOT NULL REFERENCES produtos(id) ON DELETE CASCADE,
+    tipo TEXT NOT NULL CHECK (tipo IN ('entrada', 'saida')),
+    quantidade REAL NOT NULL,
+    motivo TEXT NOT NULL DEFAULT '',
+    criado_em TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE TABLE IF NOT EXISTS metricas (
+    chave TEXT PRIMARY KEY,
+    valor INTEGER NOT NULL DEFAULT 0
+);
 """
 
 SERVICOS_INICIAIS = [
@@ -71,4 +93,7 @@ def init_db():
         db.executemany(
             "INSERT OR IGNORE INTO servicos (nome, preco, duracao_min) VALUES (?, ?, ?)",
             SERVICOS_INICIAIS,
+        )
+        db.execute(
+            "INSERT OR IGNORE INTO metricas (chave, valor) VALUES ('acessos_vitrine', 0)"
         )

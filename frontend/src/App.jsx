@@ -3,12 +3,14 @@ import { api } from "./api.js";
 import Vitrine from "./components/Vitrine.jsx";
 import Clientes from "./components/Clientes.jsx";
 import Agenda from "./components/Agenda.jsx";
+import Estoque from "./components/Estoque.jsx";
 import Aviso from "./components/Aviso.jsx";
 
 const ABAS = [
   { chave: "vitrine", rotulo: "Vitrine" },
   { chave: "clientes", rotulo: "Clientes" },
   { chave: "agenda", rotulo: "Agenda" },
+  { chave: "estoque", rotulo: "Estoque" },
 ];
 
 export default function App() {
@@ -57,6 +59,7 @@ export default function App() {
         {aba === "agenda" && (
           <Agenda clientes={clientes} servicos={servicos} aoAvisar={setAviso} />
         )}
+        {aba === "estoque" && <Estoque aoAvisar={setAviso} />}
       </main>
 
       <footer className="rodape">

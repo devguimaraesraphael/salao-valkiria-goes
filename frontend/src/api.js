@@ -30,6 +30,21 @@ export const api = {
   criarAgendamento: (agendamento) =>
     requisitar("/api/agendamentos", { method: "POST", body: JSON.stringify(agendamento) }),
   removerAgendamento: (id) => requisitar(`/api/agendamentos/${id}`, { method: "DELETE" }),
+
+  listarProdutos: () => requisitar("/api/produtos"),
+  criarProduto: (produto) =>
+    requisitar("/api/produtos", { method: "POST", body: JSON.stringify(produto) }),
+  atualizarProduto: (id, produto) =>
+    requisitar(`/api/produtos/${id}`, { method: "PUT", body: JSON.stringify(produto) }),
+  removerProduto: (id) => requisitar(`/api/produtos/${id}`, { method: "DELETE" }),
+  listarMovimentos: (produtoId) => requisitar(`/api/produtos/${produtoId}/movimentos`),
+  registrarMovimento: (produtoId, movimento) =>
+    requisitar(`/api/produtos/${produtoId}/movimentos`, {
+      method: "POST",
+      body: JSON.stringify(movimento),
+    }),
+
+  indicadores: () => requisitar("/api/indicadores"),
 };
 
 export function formatarPreco(valor) {

@@ -272,6 +272,22 @@ button.perigo {
   white-space: nowrap;
 }
 
+.estoque-baixo td {
+  background: #fdeceb;
+}
+
+.etiqueta-alerta {
+  display: inline-block;
+  margin-left: 8px;
+  background: var(--vermelho);
+  color: white;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
 .total {
   margin: 16px 0 0;
   text-align: right;
