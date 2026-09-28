@@ -241,7 +241,7 @@ export default function Estoque({ aoAvisar }) {
             </label>
           </div>
           <label>
-            Motivo
+            Motivo (opcional)
             <input
               value={movimento.motivo}
               onChange={(e) => setMovimento((atual) => ({ ...atual, motivo: e.target.value }))}
